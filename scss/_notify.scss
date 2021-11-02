@@ -1,0 +1,126 @@
+body{
+    background-color: $gralBg;
+}
+
+.headMenu{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 15px 140px 10px 140px;
+    //border: red 1px solid;
+
+    .txtNotif{
+        font-size: 30px;
+        font-weight: bold;
+        color: black;
+    }
+
+    .txtSet{
+        font-size: 16px;
+        font-weight: 600;
+        color: #585555;
+        padding-top: 7px;
+        padding-left: 17px;
+        border-radius: 5px;
+        //border: red 1px solid;
+        height: 40px;
+        width: 95px;
+    }
+
+    .txtSet:hover{
+        background-color: $HoverGray;
+        color: black;
+    }
+}
+
+
+#contMenu{
+    //border: red 1px solid;
+    background-color: $gralBg;
+    padding: 15px 200px 10px 140px;
+    min-height: 100vh;
+    height: 100%;
+    
+    .list-group-item{
+        width: 240px;
+        border: none;
+        background-color: $gralBg;   
+        color: black;
+        .active{
+            background-color: white;
+            color:black;
+            font-weight:bolder;
+            border: none;
+            //background-color: white;
+                }
+        
+        
+    }
+
+    .active{
+        background-color: white;
+        color:black;
+        font-weight:bolder;
+        border: none;
+        //background-color: white;
+            }
+
+    .list-group-item:hover{
+        background-color: $HoverGray;
+    }
+    .tab-pane{
+        //border: red 1px solid;
+        background-color: $gralBg;
+    .card{
+        margin-left: 10px;
+        background-color: $gralBg;
+        border-radius: 10px;
+        border: rgb(236, 235, 235) 1px solid;
+        .card-body{
+            
+            width: 730px;
+            height: 350px;
+            background-color: white;
+            border-radius: 10px;
+            border: rgb(214, 211, 211) 1px solid;
+            margin-bottom: 10px;
+    
+            .crayons-avatar__image{
+                margin-left: 280px;
+                margin-top: 30px;
+                border-radius: 100px;
+                border: rgb(216, 215, 215) 1px solid;
+            }
+
+            .card-text{
+                padding: 20px 50px 20px 50px;
+                text-align: center;
+                font-weight: lighter;
+                font-size: 18px;
+                color: black;
+            }
+
+            .card-link{
+                padding-left: 200px;
+                color: rgb(107, 105, 105);
+                
+                font-weight: lighter;
+                .setLink{
+                    text-decoration: none;
+                    color:$gralBlue;
+                }
+            }
+
+            
+        }
+
+    }
+    
+}
+    #list-home{
+        width: 730px;
+        height: 350px;
+    }
+
+    
+}

@@ -1,0 +1,15 @@
+/*LeftSide Bar*/
+//Mixins
+@mixin fontHead{
+    font-weight: bold;
+    line-height: 1.4;
+    text-decoration: none;
+    word-spacing: 1px;
+}
+
+@mixin btnHead {
+    height: 40px;
+    width: 200px;
+    font-weight: 600;
+    margin:5px;
+}

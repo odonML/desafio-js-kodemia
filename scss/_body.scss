@@ -1,0 +1,85 @@
+.main__body{
+    .authentication__card{
+        background-color: rgba(59, 73, 223, 0.10);
+        border-radius: 5px;
+        border: 1px solid rgba(9, 9, 9, 0.2);
+        margin-bottom: 0.75rem;
+        padding: 2rem;
+        margin-left: 1rem;
+    
+        .authentication__body{
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+    
+            .feed__container{
+                display: flex;
+                align-items: center;
+    
+                .feed__image-container{
+                    height: 80px;
+                    width: 80px;
+                    margin-right: 2rem;
+    
+                    .feed__image{
+                        border-radius: 10px;
+                        transform: rotate(-10deg);
+                        height: auto;
+                        width: 100%;
+                    }
+                }
+    
+                .feed__title{
+                    h2{
+                        font-size: 1.875rem;
+                        a{
+                            color: #3b49df;
+                        }
+                    }
+                    p{
+                        color: #575757;
+                        font-size: 1.15rem;
+                    }
+                }
+            }
+    
+            .feed__actions{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+                .btn{
+                    display: inline-block;
+                    padding: 0.5rem 1rem;
+                    color: #fff;
+                    border-radius: 5px;
+                    font-weight: 500;
+                }
+    
+                .btn-blue{
+                    background-color: #3b49df;
+                }
+    
+                .btn-transparent{
+                    background-color:transparent;
+                    color: #3b49df;;
+                }
+            }
+        }
+    
+    }
+    
+    .card{
+        width: auto;
+        margin-left: 15px;
+
+        .card-body .btn-light {
+            background-color: #e6e3e3;
+            width: auto;
+            color: #575757;
+            font-weight: 400;
+        }
+    }
+
+    
+}

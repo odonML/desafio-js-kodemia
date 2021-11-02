@@ -1,0 +1,35 @@
+main {
+    margin-bottom: 20px;
+}
+
+.container-footer {
+    background: #d6d6d7;
+    color: #575757;
+    padding: 3rem;
+    position: relative;
+    font-size: .875rem;
+    text-align: center;
+    bottom: 0;
+}
+
+.link-footer {
+    color: #090909;
+    line-height: 1.25;
+    font-size: .875rem;
+    font-weight: 700;
+    overflow-wrap: anywhere; // Sirve para romper una cadena dentro de una URL, para que no se desborde
+    word-break: break-word; // Tiene la misma función que el overflow-wrap
+    box-sizing: border-box;
+    &:hover {
+        color: #3B49DF;
+    }                                
+}
+
+#p_footer {
+    margin: 0;
+    padding: 0;
+}
+
+.notificationFooter{
+    position: relative;
+}
