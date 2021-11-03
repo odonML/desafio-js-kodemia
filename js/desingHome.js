@@ -1,19 +1,12 @@
 
 
-document.querySelector(".cards-secondary").addEventListener("click", function (event) {
+document.querySelector(".cards-secondary").addEventListener("mouseover", function (event) {
     let card = document.querySelector(".card")
-    addClass(card, "bordCard")
+    card.classList.add("bordCard");
 });
 
-function addClass(el, className) {
-    if (el.classList)
-        el.classList.add(className)
-    else if (!hasClass(el, className))
-        el.className += " " + className;
-}
+document.querySelector(".cards-secondary").addEventListener("mouseout", function (event) {
+    let card = document.querySelector(".card")
+    card.classList.remove("bordCard");
+});
 
-function hasClass(el, className) {
-    if (el.classList)
-        return el.classList.contains(className);
-    return !!el.className.match(new RegExp('(\\s|^)' + className + '(\\s|$)'));
-}
