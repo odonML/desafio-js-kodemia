@@ -1,0 +1,47 @@
+.nav-create-post{
+    padding: 5px 0px;
+    .row>*{
+        width: auto;
+    }
+    .parrafo{
+        width: auto;
+        height: 100%;
+        // border: solid 1px black;
+        margin-bottom: 0px;
+    }
+    .form-select{
+        padding: 5px;
+    }
+
+    .items{
+        display: flex;
+        justify-content: flex-end;
+        height: 100%;
+        width: auto;
+        .item{
+            position: relative;
+            margin: 0px 5px;
+            padding: 5px;
+            border-radius: 10px;
+            transition: all .5s;
+            
+            .line{
+                position: absolute;
+                display: none;
+                width: 0%;
+                bottom: 0px;
+                border-bottom: solid 2px black;
+                transition: all .5s;
+            }
+            &:hover{
+                color: $gralBlue;
+                background-color: $HoverGray;
+                .line{
+                    display: block;
+                    width: 80%;
+                    border-bottom: 0px;
+                }
+            }
+        }
+    }
+}
