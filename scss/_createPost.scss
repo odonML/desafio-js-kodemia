@@ -58,6 +58,12 @@
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    .parrafo{
+        width: auto;
+        height: 100%;
+        // border: solid 1px black;
+        margin-bottom: 0px;
+    }
     .form{
         position: relative;
         width: 90%;
@@ -84,10 +90,8 @@
         .tags{
             font-size: 25px;
         }
-        .aviso{
+        .aviso-tags{
             display: none;
-            color: red;
-            font-size: 12px;
         }
         .up-img{
             font-size: 20px;
@@ -99,6 +103,13 @@
     .buttons{
        width: 90%;
     //    border: solid 1px black;
+        .aviso-post{
+            display: none;
+        }
+    }
+    .aviso{
+        color: red;
+        font-size: 12px;
     }
 }
 
@@ -114,8 +125,11 @@
 .btn-publish{
     color: white;
     background-color: black;
+    &:disabled{
+        background-color: darkgray;
+    }
 }
 .btn-save-draft{
-    color: black;
+    color: white;
     background-color: gray;
 }
