@@ -4,7 +4,7 @@ function cleanInput(){
         input.value = "";
     })
 }
-
+//post
 function post(obj){
     const xhr = new XMLHttpRequest();
     const URL = "https://desafio-js-kodemia-default-rtdb.firebaseio.com/.json";
@@ -17,6 +17,22 @@ function post(obj){
     };
     xhr.send(JSON.stringify(obj))
 }
+//Update
+function updateUser(userId, data) {
+    const xhr = new XMLHttpRequest();
+    const URL = `https://desafio-js-kodemia-default-rtdb.firebaseio.com/${postId}/.json`;
+    xhr.addEventListener("readystatechange", () => {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        console.log(xhr.status);
+
+      } else {
+        console.log(xhr.readyState);
+      }
+    });
+    xhr.open("PUT", URL, true);
+    xhr.send(JSON.stringify(data));
+}
+
 
 function writeTagsValidation(){
     let tags = this.value;
@@ -44,13 +60,18 @@ function savePost(){
     const inputUpImage = document.querySelector("#upImage");
     const inputContent = document.querySelector("#content");
     const inputTags = document.querySelector("#tags");
+    const inputDate = document.querySelector("#date");
     let titulo = inputTitulo.value;
     let tags = inputTags.value;
     let upImage = inputUpImage.value;
     let content = inputContent.value;
+    let fecha = inputDate.value;
     
+    // console.log(fecha);
+
     let aviso = document.querySelector(".aviso-post")
-    
+    let getTime = new Date();
+    let hora = getTime.getHours() + ':' + getTime.getMinutes() + ':' + getTime.getSeconds();
     if(titulo !== "" && inputTags.dataset.valid === "true" && content !== ""){
         aviso.style.display = "none";
         let arrayTags = tags.split(" ");
@@ -59,8 +80,8 @@ function savePost(){
             tags: arrayTags,
             content,
             img: upImage,
-            date: "01-15-2020",
-            hour: "10:00:00",
+            date: fecha,
+            hour: hora,
             reactions: {
                 likes: 0,
                 unicorn: 0,
