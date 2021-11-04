@@ -1,3 +1,7 @@
+.fluid-post{
+    padding: 0px;
+}
+
 .nav-create-post{
     padding: 5px 0px;
     .row>*{
@@ -40,12 +44,12 @@
                 display: block;
                 width: 0%;
                 bottom: 0px;
-                border-bottom: solid 2px $gralBlue;
+                border-bottom: solid 2px $color-hoverTitleCard;
                 transition: all .5s;
             }
             &:hover{
-                color: $gralBlue;
-                background-color: $HoverGray;
+                color: $color-hoverTitleCard;
+                background-color: $color-hoverButtonCard;
                 .line{
                     display: block;
                     width: 80%;
