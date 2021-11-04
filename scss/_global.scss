@@ -1,6 +1,21 @@
-$gralBlue:#3b49df;
-$gralBlueHover:#2c38c0;
-$colorBanner: #323DA3;
-$siteWidth: 1280;
-$HoverGray:#e6e3e3;
-$gralBg:#EFEFEF;
+body{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: $color-background;
+}
+
+a{
+    text-decoration: none;
+    color: $font-color;
+}
+
+h2{
+    margin: 0;
+}
+
+button{
+    padding: 0;
+}
+
