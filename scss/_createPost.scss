@@ -1,0 +1,135 @@
+.nav-create-post{
+    padding: 5px 0px;
+    .row>*{
+        width: auto;
+    }
+    .parrafo{
+        width: auto;
+        height: 100%;
+        // border: solid 1px black;
+        margin-bottom: 0px;
+    }
+    select{
+        background-color: transparent;
+        padding: 10px;
+        border-radius: 10px;
+        border: solid 1px gray;
+        option{
+            padding: 10px;
+            margin: 10px;
+        }
+        &:focus{
+            border: solid 1px blue;
+        }
+    }
+
+    .items{
+        display: flex;
+        justify-content: flex-end;
+        height: 100%;
+        width: auto;
+        .item{
+            position: relative;
+            margin: 0px 5px;
+            padding: 5px;
+            border-radius: 10px;
+            transition: all .5s;
+            
+            .line{
+                position: absolute;
+                display: block;
+                width: 0%;
+                bottom: 0px;
+                border-bottom: solid 2px $gralBlue;
+                transition: all .5s;
+            }
+            &:hover{
+                color: $gralBlue;
+                background-color: $HoverGray;
+                .line{
+                    display: block;
+                    width: 80%;
+                }
+            }
+        }
+    }
+}
+.form-section{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    .parrafo{
+        width: auto;
+        height: 100%;
+        // border: solid 1px black;
+        margin-bottom: 0px;
+    }
+    .form{
+        position: relative;
+        width: 90%;
+        min-height: 80vh;
+        height: auto;
+        background-color: white;
+        padding: 25px 50px;
+        overflow-y: scroll;
+        input{
+            width: 100%;
+            height: auto;
+            max-height: 100px;
+            border: none;
+            margin: 10px 0px;
+            padding: none;
+            background-color: transparent;
+            &:focus{
+                outline: none;
+            }
+        }
+        .titulo{
+            font-size: 50px;
+        }
+        .tags{
+            font-size: 25px;
+        }
+        .aviso-tags{
+            display: none;
+        }
+        .up-img{
+            font-size: 20px;
+        }
+        .content{
+            font-size: 25px;
+        }
+    }
+    .buttons{
+       width: 90%;
+    //    border: solid 1px black;
+        .aviso-post{
+            display: none;
+        }
+    }
+    .aviso{
+        color: red;
+        font-size: 12px;
+    }
+}
+
+.boton{
+    padding: 5px 10px;
+    border: solid 1px gray;
+    border-radius: 5px;
+    margin: 5px;
+}
+.btn-add-cover{
+    background-color: transparent;
+}
+.btn-publish{
+    color: white;
+    background-color: black;
+    &:disabled{
+        background-color: darkgray;
+    }
+}
+.btn-save-draft{
+    color: white;
+    background-color: gray;
+}
