@@ -27,7 +27,13 @@
 //     xhr.send(JSON.stringify(obj))
 // }
 // post(objeto)
-
+function cleanMainBody(){
+    const mainBody = document.querySelector(".main--body")
+    while(mainBody.firstChild){
+        mainBody.firstChild.remove();
+    }
+    getUsers();
+}
 function getUsers() {
     const xhr = new XMLHttpRequest();
     xhr.addEventListener("load", () => {
@@ -52,19 +58,23 @@ function renderTable(cards) {
         listPersons.push(obj);
     }
 
-    listPersons.forEach(person => {
-        cardHome(person)
+    listPersons.forEach(async (person) => {
+        await cardHome(person)
     })
 }
 
-function deleleUser(userId) {
+function removePost(){
+    let postId = this.dataset.id;
+    deletePost(postId)
+}
+
+function deletePost(postId) {
     const xhr = new XMLHttpRequest();
-    const URL = `https://desafio-js-kodemia-default-rtdb.firebaseio.com/${userId}/.json`;
+    const URL = `https://desafio-js-kodemia-default-rtdb.firebaseio.com/${postId}/.json`;
     xhr.addEventListener("readystatechange", () => {
         if (xhr.readyState === 4 && xhr.status === 200) {
-            console.log(xhr.responseText);
-            cleanTable();
-            getUsers();
+            console.log("Eliminado",xhr.responseText);
+            cleanMainBody();
         } else {
             console.log(xhr.readyState);
         }
@@ -169,7 +179,7 @@ function cardHome({ id, content, date, titulo, tags, reactions, img }) {
     svgReaction.setAttribute("height", "24")
 
     const path = document.createElement("img")
-    path.src = "../img/svg/corazon.svg"
+    // path.src = "../img/svg/corazon.svg" --------------------ODON: me da error esta linea no se porque...
 
     const textReaction = document.createElement("text")
     textReaction.textContent = "153"
@@ -195,6 +205,7 @@ function cardHome({ id, content, date, titulo, tags, reactions, img }) {
     buttonDelete.classList.add("button__save--delete", "btn__delete");
     buttonDelete.setAttribute("type", "button")
     buttonDelete.dataset.id = id;
+    buttonDelete.addEventListener("click", removePost);
 
     const spanDelete = document.createElement("span")
     spanDelete.textContent = "Eliminar"
