@@ -17,3 +17,9 @@
 @mixin rounded {
     border-radius: 50%;
 }
+
+@mixin items-center{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
