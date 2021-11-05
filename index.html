@@ -12,20 +12,22 @@
 <body>
     <header class="header">
         <div class="nav_header">
-            <div class="icon-search">
-                <a href="" class="site-logo"><img
-                        src="https://res.cloudinary.com/practicaldev/image/fetch/s--T8ep-K_P--/c_fill,f_auto,fl_progressive,h_90,q_auto,w_90/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/3/13d3b32a-d381-4549-b95e-ec665768ce8f.png"
-                        alt="" width="50" height="40"></a>
-                <div class="search">
-                    <input type="text">
-                    <button>Click</button>
+            <div class="nav_header--nav">
+                <div class="icon-search">
+                    <a href="" class="site-logo"><img
+                            src="https://res.cloudinary.com/practicaldev/image/fetch/s--T8ep-K_P--/c_fill,f_auto,fl_progressive,h_90,q_auto,w_90/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/3/13d3b32a-d381-4549-b95e-ec665768ce8f.png"
+                            alt="" width="50" height="45"></a>
+                    <div class="search">
+                        <input type="text">
+                        <button>Click</button>
+                    </div>
                 </div>
-            </div>
-            <div class="items-center">
-                <button type="button">Create Post</button>
-                <a href="">emoji</a>
-                <a href="">campana</a>
-                <div>logo</div>
+                <div class="items-center">
+                    <a class="button__create" href="./pages/create-post.html">Create Post</a>
+                    <a href="">emoji</a>
+                    <a href="">campana</a>
+                    <div>logo</div>
+                </div>
             </div>
         </div>
     </header>
@@ -383,7 +385,14 @@
             </aside>
             <!-- <aside class="aside--left">Left</aside> -->
             <section class="main--body">
-                <article class="card" id="card__1">
+                <nav class="filter-cards">
+                    <ul class="items-center">
+                        <li>Feed</li>
+                        <li>Latest</li>
+                        <li>Top</li>
+                    </ul>
+                </nav>
+                <article class="card">
                     <div class="card__body">
                         <div class="body__top">
                             <div class="ps-relative">
