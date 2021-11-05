@@ -192,7 +192,9 @@ function cardHome({ id, content, date, titulo, tags, reactions, img }) {
 
     const small = document.createElement("small")
     small.textContent = "4 min read"
-
+    
+    const updateLink = document.createElement("a");
+    updateLink.href = `./pages/create-post.html?id=${id}`;
     const buttonUpdate = document.createElement("button")
     buttonUpdate.classList.add("button__save--update", "btn__update");
     buttonUpdate.setAttribute("type", "button")
@@ -238,7 +240,9 @@ function cardHome({ id, content, date, titulo, tags, reactions, img }) {
 
     svgReaction.appendChild(path)
 
-    bottom_save.append(small, buttonUpdate, buttonDelete)
+    updateLink.append(buttonUpdate);
+
+    bottom_save.append(small, updateLink, buttonDelete)
     buttonUpdate.append(spanUpdate)
     buttonDelete.append(spanDelete)
 }
