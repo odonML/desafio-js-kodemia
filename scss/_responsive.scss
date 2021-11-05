@@ -1,0 +1,23 @@
+@media (min-width: 768px) and (max-width: 1023px) {
+    .aside--right {
+        display: none;
+    }
+
+    .main{
+        grid-template-columns: 2fr 5fr;
+    }
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+    .aside--left {
+        display: none;
+    }
+    .aside--right {
+        display: none;
+    }
+
+    .main{
+        grid-template-columns: 1fr;
+        padding: 0;
+    }
+}

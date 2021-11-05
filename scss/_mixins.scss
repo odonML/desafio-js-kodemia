@@ -13,3 +13,7 @@
     font-weight: 600;
     margin:5px;
 }
+
+@mixin rounded {
+    border-radius: 50%;
+}
