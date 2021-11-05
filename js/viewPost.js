@@ -57,7 +57,8 @@ if (urlFull !== "") {
     const URL = `https://desafio-js-kodemia-default-rtdb.firebaseio.com/${id}/.json`;
     xhr.addEventListener("readystatechange", () => {
       if (xhr.readyState === 4 && xhr.status === 200) {
-        console.log("Actializacion exitosa")
+        console.log("Actializacion exitosa");
+        window.location ="../index.html";
       } else {
         // console.log(xhr.readyState);
       }
@@ -136,6 +137,7 @@ if (urlFull !== "") {
       if (xhr.readyState === 4 && xhr.status === 200) {
         console.log("Post Creado con exito");
         cleanInput();
+        // window.location ="../index.html";
       }
     };
     xhr.send(JSON.stringify(obj));
