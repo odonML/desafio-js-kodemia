@@ -16,10 +16,12 @@
 body{
     font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
-
+.avatar{
+    width: 10px;
+}
 // Arreglar el tamaño
 .avatar{
-    width: 45px;
+    width: 10px;
 }
 
 .avatar2{
@@ -29,9 +31,8 @@ body{
     object-position: center;
     width: 35px;
 }
-
-.dates{
-    font-size: 14px;
+.subhead div p .dates{
+    font-size: 12px;
     font-weight: 300;
     margin: 0;
 }
