@@ -1,21 +1,68 @@
-function cleanMainBody(){
+function cleanMainBody() {
     const mainBody = document.querySelector(".main--body")
-    while(mainBody.firstChild){
+    while (mainBody.firstChild) {
         mainBody.firstChild.remove();
     }
 }
 
-function filterPost(arrayOfPost, value){
-        let postFiltrados = arrayOfPost.filter(post => post.titulo.includes(value));
-        cleanMainBody();
-        renderCards(postFiltrados);
+function filterPost(arrayOfPost, value) {
+    let postFiltrados = arrayOfPost.filter(post => post.titulo.includes(value));
+    cleanMainBody();
+    renderCards(postFiltrados);
 }
 
-function search(arrayOfPost){
+function filterLatest(arrayOfPost) {
+    const filterLatest = arrayOfPost
+        .map((post) => {
+            post.dates = `${post.date} ${post.hour}`
+            return post
+        })
+    const orderLatest = filterLatest.sort((a, b) => {
+        if (a.dates < b.dates) {
+            return 1;
+        }
+        if (a.dates > b.dates) {
+            return -1;
+        }
+        return 0;
+    })
+    cleanMainBody();
+    renderCards(orderLatest)
+}
+
+function filterTop(arrayOfPost) {
+    const orderTop = arrayOfPost.sort((a, b) => {
+        if (a.reactions.likes < b.reactions.likes) {
+            return 1;
+        }
+        if (a.reactions.likes > b.reactions.likes) {
+            return -1;
+        }
+        return 0;
+    })
+    cleanMainBody();
+    renderCards(orderTop)
+}
+
+function search(arrayOfPost) {
     const search = document.querySelector("#inputSearch");
-    search.addEventListener("keyup", ()=>{
+    search.addEventListener("keyup", () => {
         let value = search.value;
         filterPost(arrayOfPost, value);
+    });
+}
+
+function clickLatest(arrayOfPost) {
+    const search = document.querySelector(".latest");
+    search.addEventListener("click", () => {
+        filterLatest(arrayOfPost);
+    });
+}
+
+function clickTopReaction(arrayOfPost) {
+    const search = document.querySelector(".top");
+    search.addEventListener("click", () => {
+        filterTop(arrayOfPost);
     });
 }
 
@@ -27,6 +74,8 @@ function getPosts() {
         let arrayOfPost = toArray(response);
         renderCards(arrayOfPost);
         search(arrayOfPost);
+        clickLatest(arrayOfPost)
+        clickTopReaction(arrayOfPost)
     })
     const URL = "https://desafio-js-kodemia-default-rtdb.firebaseio.com/.json";
     xhr.open("GET", URL, true);
@@ -37,7 +86,7 @@ getPosts();
 
 // console.log(getPosts())
 
-function toArray(objPosts){
+function toArray(objPosts) {
     let listPosts = [];
     for (let key in objPosts) {
         let obj = {
@@ -55,7 +104,7 @@ function renderCards(arrayPostCards) {
     })
 }
 
-function removePost(){
+function removePost() {
     let postId = this.dataset.id;
     deletePost(postId)
 }
@@ -65,7 +114,7 @@ function deletePost(postId) {
     const URL = `https://desafio-js-kodemia-default-rtdb.firebaseio.com/${postId}/.json`;
     xhr.addEventListener("readystatechange", () => {
         if (xhr.readyState === 4 && xhr.status === 200) {
-            console.log("Eliminado",xhr.responseText);
+            console.log("Eliminado", xhr.responseText);
             cleanMainBody();
             getPosts();
         } else {
@@ -185,7 +234,7 @@ function printCard({ id, content, date, titulo, tags, reactions, img }) {
 
     const small = document.createElement("small")
     small.textContent = "4 min read"
-    
+
     const updateLink = document.createElement("a");
     updateLink.href = `./pages/create-post.html?id=${id}`;
     const buttonUpdate = document.createElement("button")

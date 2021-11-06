@@ -11,24 +11,24 @@
         width: 100%;
         box-sizing: border-box;
         // outline: 1px solid red;
+
+        .filter-cards{
+            .items-center{
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                margin-top: 0.25rem;
+
+                li{
+                    padding: 1rem 0.5rem;
+                }
+            }
+        }
     
         .main--body{
             display: flex;
             flex-direction: column;
             gap: 0.5rem;
-
-            .filter-cards{
-                .items-center{
-                    display: flex;
-                    align-items: center;
-                    gap: 0.5rem;
-                    margin-top: 0.25rem;
-
-                    li{
-                        padding: 1rem 0.5rem;
-                    }
-                }
-            }
     
             .card{
                 background-color: $color-backgroundCard;
