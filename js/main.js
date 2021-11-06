@@ -1,65 +1,57 @@
-// let objeto = {
-//     titulo: "🔥Build a Stunning Portfolio website with React JS",
-//     tags: ["#react", "#tutorial"],
-//     content: `Hi there👋,
-
-//     I wanted to build a portfolio which is different and unique with design and little bit animations.
-//     Here is the Demo Link:`,
-//     img: "https://res.cloudinary.com/practicaldev/image/fetch/s--Pta6s_6y--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/7pkfs5vyft03x5ohb1ww.png",
-//     date: "01-15-2020",
-//     hour: "10:00:00",
-//     reactions: {
-//         likes: 0,
-//         unicorn: 0,
-//         save: 0,
-//     },
-// };
-// function post(obj){
-//     const xhr = new XMLHttpRequest();
-//     const URL = "https://desafio-js-kodemia-default-rtdb.firebaseio.com/.json";
-
-//     xhr.open("POST", URL, true);
-//     xhr.onreadystatechange = function () {
-//         if(xhr.readyState === 4 && xhr.status === 200) {
-//             console.log("hola");
-//         }
-//     };
-//     xhr.send(JSON.stringify(obj))
-// }
-// post(objeto)
 function cleanMainBody(){
     const mainBody = document.querySelector(".main--body")
     while(mainBody.firstChild){
         mainBody.firstChild.remove();
     }
-    getUsers();
 }
-function getUsers() {
+
+function filterPost(arrayOfPost, value){
+        let postFiltrados = arrayOfPost.filter(post => post.titulo.includes(value));
+        cleanMainBody();
+        renderCards(postFiltrados);
+}
+
+function search(arrayOfPost){
+    const search = document.querySelector("#inputSearch");
+    search.addEventListener("keyup", ()=>{
+        let value = search.value;
+        filterPost(arrayOfPost, value);
+    });
+}
+
+
+function getPosts() {
     const xhr = new XMLHttpRequest();
     xhr.addEventListener("load", () => {
         const response = JSON.parse(xhr.responseText);
-        renderTable(response);
-        //console.log(response);
+        let arrayOfPost = toArray(response);
+        renderCards(arrayOfPost);
+        search(arrayOfPost);
     })
     const URL = "https://desafio-js-kodemia-default-rtdb.firebaseio.com/.json";
     xhr.open("GET", URL, true);
     xhr.send();
 }
 
-getUsers();
+getPosts();
 
-function renderTable(cards) {
-    let listPersons = [];
-    for (let key in cards) {
+// console.log(getPosts())
+
+function toArray(objPosts){
+    let listPosts = [];
+    for (let key in objPosts) {
         let obj = {
             id: key,
-            ...cards[key],
+            ...objPosts[key],
         }
-        listPersons.push(obj);
+        listPosts.push(obj);
     }
+    return listPosts;
+}
 
-    listPersons.forEach(async (person) => {
-        await cardHome(person)
+function renderCards(arrayPostCards) {
+    arrayPostCards.forEach(async (person) => {
+        await printCard(person)
     })
 }
 
@@ -75,6 +67,7 @@ function deletePost(postId) {
         if (xhr.readyState === 4 && xhr.status === 200) {
             console.log("Eliminado",xhr.responseText);
             cleanMainBody();
+            getPosts();
         } else {
             console.log(xhr.readyState);
         }
@@ -84,7 +77,7 @@ function deletePost(postId) {
 };
 
 
-function cardHome({ id, content, date, titulo, tags, reactions, img }) {
+function printCard({ id, content, date, titulo, tags, reactions, img }) {
     const mainBody = document.querySelector(".main--body")
     const card = document.createElement("article");
     card.classList.add("card");
