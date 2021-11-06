@@ -21,6 +21,10 @@
 
                 li{
                     padding: 1rem 0.5rem;
+                    a{
+                        color: $color-filterCard;
+                    }
+                    
                 }
             }
         }
@@ -34,6 +38,16 @@
                 figure:first-child{
                     display:block;
                 }
+                .card__body{
+                    .body__main{
+                        .body__title{
+                            .cards-secondary{
+                                font-size:1.875rem;
+                            }
+                        }
+                    }
+                }
+                
             }
     
             .card{
@@ -265,3 +279,7 @@
     border: 1px solid blue !important;
 }
 
+.filter-select{
+    font-weight: 700;
+    color: #000 !important;
+}

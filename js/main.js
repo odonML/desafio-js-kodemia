@@ -53,19 +53,26 @@ function search(arrayOfPost) {
 }
 
 function clickLatest(arrayOfPost) {
-    const search = document.querySelector(".latest");
-    search.addEventListener("click", () => {
+    const filter = document.querySelector(".latest");
+    filter.addEventListener("click", () => {
+        clickFilterCss(filter)
         filterLatest(arrayOfPost);
     });
 }
 
 function clickTopReaction(arrayOfPost) {
-    const search = document.querySelector(".top");
-    search.addEventListener("click", () => {
+    const filter = document.querySelector(".top");
+    filter.addEventListener("click", () => {
+        clickFilterCss(filter)
         filterTop(arrayOfPost);
     });
 }
 
+function clickFilterCss(filter) {
+    const mostrar = document.querySelectorAll(".items-center li a");
+    mostrar.forEach((li) => li.classList.remove("filter-select"))
+    filter.classList.add("filter-select",)
+}
 
 function getPosts() {
     const xhr = new XMLHttpRequest();
