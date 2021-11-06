@@ -1,21 +1,68 @@
-function cleanMainBody(){
+function cleanMainBody() {
     const mainBody = document.querySelector(".main--body")
-    while(mainBody.firstChild){
+    while (mainBody.firstChild) {
         mainBody.firstChild.remove();
     }
 }
 
-function filterPost(arrayOfPost, value){
-        let postFiltrados = arrayOfPost.filter(post => post.titulo.includes(value));
-        cleanMainBody();
-        renderCards(postFiltrados);
+function filterPost(arrayOfPost, value) {
+    let postFiltrados = arrayOfPost.filter(post => post.titulo.includes(value));
+    cleanMainBody();
+    renderCards(postFiltrados);
 }
 
-function search(arrayOfPost){
+function filterLatest(arrayOfPost) {
+    const filterLatest = arrayOfPost
+        .map((post) => {
+            post.dates = `${post.date} ${post.hour}`
+            return post
+        })
+    const orderLatest = filterLatest.sort((a, b) => {
+        if (a.dates < b.dates) {
+            return 1;
+        }
+        if (a.dates > b.dates) {
+            return -1;
+        }
+        return 0;
+    })
+    cleanMainBody();
+    renderCards(orderLatest)
+}
+
+function filterTop(arrayOfPost) {
+    const orderTop = arrayOfPost.sort((a, b) => {
+        if (a.reactions.likes < b.reactions.likes) {
+            return 1;
+        }
+        if (a.reactions.likes > b.reactions.likes) {
+            return -1;
+        }
+        return 0;
+    })
+    cleanMainBody();
+    renderCards(orderTop)
+}
+
+function search(arrayOfPost) {
     const search = document.querySelector("#inputSearch");
-    search.addEventListener("keyup", ()=>{
+    search.addEventListener("keyup", () => {
         let value = search.value;
         filterPost(arrayOfPost, value);
+    });
+}
+
+function clickLatest(arrayOfPost) {
+    const search = document.querySelector(".latest");
+    search.addEventListener("click", () => {
+        filterLatest(arrayOfPost);
+    });
+}
+
+function clickTopReaction(arrayOfPost) {
+    const search = document.querySelector(".top");
+    search.addEventListener("click", () => {
+        filterTop(arrayOfPost);
     });
 }
 
@@ -27,6 +74,8 @@ function getPosts() {
         let arrayOfPost = toArray(response);
         renderCards(arrayOfPost);
         search(arrayOfPost);
+        clickLatest(arrayOfPost)
+        clickTopReaction(arrayOfPost)
     })
     const URL = "https://desafio-js-kodemia-default-rtdb.firebaseio.com/.json";
     xhr.open("GET", URL, true);
@@ -37,7 +86,7 @@ getPosts();
 
 // console.log(getPosts())
 
-function toArray(objPosts){
+function toArray(objPosts) {
     let listPosts = [];
     for (let key in objPosts) {
         let obj = {
@@ -55,7 +104,7 @@ function renderCards(arrayPostCards) {
     })
 }
 
-function removePost(){
+function removePost() {
     let postId = this.dataset.id;
     deletePost(postId)
 }
@@ -65,7 +114,7 @@ function deletePost(postId) {
     const URL = `https://desafio-js-kodemia-default-rtdb.firebaseio.com/${postId}/.json`;
     xhr.addEventListener("readystatechange", () => {
         if (xhr.readyState === 4 && xhr.status === 200) {
-            console.log("Eliminado",xhr.responseText);
+            console.log("Eliminado", xhr.responseText);
             cleanMainBody();
             getPosts();
         } else {
@@ -75,6 +124,11 @@ function deletePost(postId) {
     xhr.open("DELETE", URL, true);
     xhr.send();
 };
+
+function numRandom(min, max) {
+    var num = Math.floor(Math.random() * (max - min));
+    return num + min;
+}
 
 
 function printCard({ id, content, date, titulo, tags, reactions, img }) {
@@ -94,12 +148,12 @@ function printCard({ id, content, date, titulo, tags, reactions, img }) {
     const aImageAutor = document.createElement("a");
     const img_autor = document.createElement("img");
     img_autor.classList.add("img__autor", "radius-10")
-    img_autor.src = "https://res.cloudinary.com/practicaldev/image/fetch/s--Qc_QGzy7--/c_fill,f_auto,fl_progressive,h_90,q_auto,w_90/https://dev-to-uploads.s3.amazonaws.com/uploads/organization/profile_image/394/1fb4ce27-fef4-4628-b261-f4c3d9423bbe.png"
+    img_autor.src = `https://randomuser.me/api/portraits/thumb/men/${numRandom(10, 100)}.jpg`
 
-    const aImageCoautor = document.createElement("a");
-    const img_subAutor = document.createElement("img");
-    img_subAutor.classList.add("img__autor", "sub-autor", "radius-50")
-    img_subAutor.src = "https://res.cloudinary.com/practicaldev/image/fetch/s--5CVl1gkL--/c_fill,f_auto,fl_progressive,h_90,q_auto,w_90/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/643010/08a70295-50e8-45cf-9d3a-e6c251e10f1b.png"
+    // const aImageCoautor = document.createElement("a");
+    // const img_subAutor = document.createElement("img");
+    // img_subAutor.classList.add("img__autor", "sub-autor", "radius-50")
+    // img_subAutor.src = "https://res.cloudinary.com/practicaldev/image/fetch/s--5CVl1gkL--/c_fill,f_auto,fl_progressive,h_90,q_auto,w_90/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/643010/08a70295-50e8-45cf-9d3a-e6c251e10f1b.png"
 
     const autor = document.createElement("div");
     autor.classList.add("autor");
@@ -126,7 +180,8 @@ function printCard({ id, content, date, titulo, tags, reactions, img }) {
     const aTime = document.createElement("a");
     const time = document.createElement("time");
     time.classList.add("time");
-    time.textContent = "Nov 2 (15 hours ago)";
+    time.textContent = `${moment(date).format("MMM D")}`;
+    // time.textContent = "Nov 2 (15 hours ago)";
 
     //Cuerpo del Card
     const body_main = document.createElement("div");
@@ -140,18 +195,23 @@ function printCard({ id, content, date, titulo, tags, reactions, img }) {
     const aCards_secondary = document.createElement("a");
     aCards_secondary.textContent = `${titulo}`;
 
-    /* body_tag */
     const body_tag = document.createElement("div");
     body_tag.classList.add("body__tag");
-    const decorate_ancor = document.createElement("a")
-    decorate_ancor.classList.add("decorate-ancor");
 
-    const body_tag_prefix = document.createElement("span")
-    body_tag_prefix.classList.add("body__tag--prefix")
-    body_tag_prefix.textContent = "#"
+    /* body_tag */
+    tags.map((tags) => {
+        const decorate_ancor = document.createElement("a")
+        //decorate_ancor.classList.add("decorate-ancor");
+        const body_tag_prefix = document.createElement("span")
+        body_tag_prefix.classList.add("body__tag--prefix")
+        body_tag_prefix.textContent = "#"
+        const textTag = document.createElement("text")
+        textTag.textContent = `${tags}`
+        body_tag.append(decorate_ancor)
+        decorate_ancor.append(body_tag_prefix, textTag)
+    })
 
-    const textTag = document.createElement("text")
-    textTag.textContent = "showde"
+    //arrayTags
 
     /* body_bottom */
     const body_bottom = document.createElement("div");
@@ -172,10 +232,10 @@ function printCard({ id, content, date, titulo, tags, reactions, img }) {
     svgReaction.setAttribute("height", "24")
 
     const path = document.createElement("img")
-    // path.src = "../img/svg/corazon.svg" --------------------ODON: me da error esta linea no se porque...
+    path.src = "./img/svg/corazon.svg" //--------------------ODON: me da error esta linea no se porque...
 
     const textReaction = document.createElement("text")
-    textReaction.textContent = "153"
+    textReaction.textContent = `${reactions.likes}`
 
     const spanReaction = document.createElement("span")
     spanReaction.textContent = "Reactions"
@@ -185,7 +245,7 @@ function printCard({ id, content, date, titulo, tags, reactions, img }) {
 
     const small = document.createElement("small")
     small.textContent = "4 min read"
-    
+
     const updateLink = document.createElement("a");
     updateLink.href = `./pages/create-post.html?id=${id}`;
     const buttonUpdate = document.createElement("button")
@@ -211,8 +271,9 @@ function printCard({ id, content, date, titulo, tags, reactions, img }) {
     card_body.append(body_top, body_main)
     body_top.append(ps_relative, autor)
     ps_relative.appendChild(aImageAutor)
-    aImageAutor.append(img_autor, aImageCoautor)
-    aImageCoautor.appendChild(img_subAutor)
+    aImageAutor.append(img_autor)
+    // aImageAutor.append(img_autor, aImageCoautor)
+    // aImageCoautor.appendChild(img_subAutor)
     autor.append(autor_name, aTime)
     autor_name.append(inSombra, spanLibre)
     inSombra.appendChild(sombra)
@@ -223,8 +284,7 @@ function printCard({ id, content, date, titulo, tags, reactions, img }) {
     body_title.appendChild(cards_secondary)
     cards_secondary.appendChild(aCards_secondary)
 
-    body_tag.append(decorate_ancor)
-    decorate_ancor.append(body_tag_prefix, textTag)
+
 
     body_bottom.append(bottom_details, bottom_save)
     bottom_details.append(align_items, align_items)
