@@ -17,11 +17,7 @@ body{
     font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 .avatar{
-    width: 10px;
-}
-// Arreglar el tamaño
-.avatar{
-    width: 10px;
+    width: 50px;
 }
 
 .avatar2{
@@ -31,7 +27,7 @@ body{
     object-position: center;
     width: 35px;
 }
-.subhead div p .dates{
+.dates{
     font-size: 12px;
     font-weight: 300;
     margin: 0;
@@ -117,6 +113,12 @@ body{
     color:black;
 }
 
+.name_nitin{
+    font-size: 20px;
+    font-weight: bold;
+    color:black;
+}
+
 .btn-r{
     width: 100%;
     font-weight: 550;
@@ -170,6 +172,14 @@ body{
         border-radius: 5px;
         z-index:2000;
     }
+}
+.colored-bar{
+    background-color: #072634;
+    height: 45px;
+}
+.avatar-profile{
+    position: relative;
+    top: -18px;
 }
 
 // .side_right{
