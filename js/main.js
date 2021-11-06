@@ -212,7 +212,6 @@ function printCard({ id, content, date, titulo, tags, reactions, img }) {
     })
 
     //arrayTags
-
     /* body_bottom */
     const body_bottom = document.createElement("div");
     body_bottom.classList.add("body__bottom");
@@ -284,8 +283,6 @@ function printCard({ id, content, date, titulo, tags, reactions, img }) {
     body_title.appendChild(cards_secondary)
     cards_secondary.appendChild(aCards_secondary)
 
-
-
     body_bottom.append(bottom_details, bottom_save)
     bottom_details.append(align_items, align_items)
     align_items.append(align_items_padding)
@@ -299,10 +296,6 @@ function printCard({ id, content, date, titulo, tags, reactions, img }) {
     buttonUpdate.append(spanUpdate)
     buttonDelete.append(spanDelete)
 }
-
-
-
-
 // document.querySelector(".cards-secondary").addEventListener("mouseover", function (event) {
 //     let card = document.querySelector(".card")
 //     card.classList.add("bordCard");
