@@ -53,19 +53,26 @@ function search(arrayOfPost) {
 }
 
 function clickLatest(arrayOfPost) {
-    const search = document.querySelector(".latest");
-    search.addEventListener("click", () => {
+    const filter = document.querySelector(".latest");
+    filter.addEventListener("click", () => {
+        clickFilterCss(filter)
         filterLatest(arrayOfPost);
     });
 }
 
 function clickTopReaction(arrayOfPost) {
-    const search = document.querySelector(".top");
-    search.addEventListener("click", () => {
+    const filter = document.querySelector(".top");
+    filter.addEventListener("click", () => {
+        clickFilterCss(filter)
         filterTop(arrayOfPost);
     });
 }
 
+function clickFilterCss(filter) {
+    const mostrar = document.querySelectorAll(".items-center li a");
+    mostrar.forEach((li) => li.classList.remove("filter-select"))
+    filter.classList.add("filter-select",)
+}
 
 function getPosts() {
     const xhr = new XMLHttpRequest();
@@ -136,6 +143,13 @@ function printCard({ id, content, date, titulo, tags, reactions, img }) {
     const card = document.createElement("article");
     card.classList.add("card");
 
+    const card_img = document.createElement("figure");
+    card_img.classList.add("card__img");
+
+    const imgFirstCard = document.createElement("img");
+    imgFirstCard.src = img
+
+
     const card_body = document.createElement("div");
     card_body.classList.add("card__body");
 
@@ -193,7 +207,7 @@ function printCard({ id, content, date, titulo, tags, reactions, img }) {
     const cards_secondary = document.createElement("h2");
     cards_secondary.classList.add("cards-secondary");
     const aCards_secondary = document.createElement("a");
-    aCards_secondary.textContent = `${titulo}`;
+    aCards_secondary.textContent = titulo;
 
     const body_tag = document.createElement("div");
     body_tag.classList.add("body__tag");
@@ -266,7 +280,8 @@ function printCard({ id, content, date, titulo, tags, reactions, img }) {
 
     //append
     mainBody.appendChild(card)
-    card.appendChild(card_body)
+    card.append(card_img, card_body)
+    card_img.append(imgFirstCard)
     card_body.append(body_top, body_main)
     body_top.append(ps_relative, autor)
     ps_relative.appendChild(aImageAutor)

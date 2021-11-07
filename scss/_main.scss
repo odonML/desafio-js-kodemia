@@ -21,6 +21,10 @@
 
                 li{
                     padding: 1rem 0.5rem;
+                    a{
+                        color: $color-filterCard;
+                    }
+                    
                 }
             }
         }
@@ -29,14 +33,35 @@
             display: flex;
             flex-direction: column;
             gap: 0.5rem;
+
+            .card:first-child{
+                figure:first-child{
+                    display:block;
+                }
+                .card__body{
+                    .body__main{
+                        .body__title{
+                            .cards-secondary{
+                                font-size:1.875rem;
+                            }
+                        }
+                    }
+                }
+                
+            }
     
             .card{
                 background-color: $color-backgroundCard;
                 overflow-x: hidden;
                 border-radius: $border;
                 border: 1px solid rgba(9, 9, 9, 0.2);
-    
+                
+                figure{
+                    display:none;
+                }
+
                 .card__img{
+                    margin: 0;
                     img{
                         width: 100%;
                     }
@@ -254,3 +279,7 @@
     border: 1px solid blue !important;
 }
 
+.filter-select{
+    font-weight: 700;
+    color: #000 !important;
+}
