@@ -259,6 +259,7 @@ function printCard({ id, content, date, titulo, tags, reactions, img }) {
     const cards_secondary = document.createElement("h2");
     cards_secondary.classList.add("cards-secondary");
     const aCards_secondary = document.createElement("a");
+    aCards_secondary.href = `./pages/post.html?id=${id}`;
     aCards_secondary.textContent = titulo;
 
     const body_tag = document.createElement("div");
