@@ -1,10 +1,10 @@
-
-function cleanMainBody() {
+function cleanMainBody(){
     const mainBody = document.querySelector(".main--body")
     while (mainBody.firstChild) {
         mainBody.firstChild.remove();
     }
 }
+
 
 function filterPost(arrayOfPost, value) {
     let postFiltrados = arrayOfPost.filter(post => post.titulo.includes(value));
@@ -72,6 +72,7 @@ function search(arrayOfPost) {
     });
 }
 
+
 function clickLatest(arrayOfPost) {
     const filter = document.querySelector(".latest");
     filter.addEventListener("click", () => {
@@ -109,6 +110,7 @@ function clickFilterCss(filter, clase) {
     filter.classList.add("filter-select",)
 }
 
+
 function getPosts() {
     const xhr = new XMLHttpRequest();
     xhr.addEventListener("load", () => {
@@ -120,12 +122,12 @@ function getPosts() {
         clickTopReaction(arrayOfPost)
         let cardDecoration = document.querySelectorAll(".cards-secondary")
         cardBorder(cardDecoration)
-
     })
     const URL = "https://desafio-js-kodemia-default-rtdb.firebaseio.com/.json";
     xhr.open("GET", URL, true);
     xhr.send();
 }
+
 
 function cardBorder(cardDecoration) {
     cardDecoration.forEach((card) => {
