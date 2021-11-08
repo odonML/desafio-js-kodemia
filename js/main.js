@@ -1,3 +1,4 @@
+
 function cleanMainBody() {
     const mainBody = document.querySelector(".main--body")
     while (mainBody.firstChild) {

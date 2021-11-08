@@ -91,10 +91,6 @@
                             display: flex
                         }
             
-                        .radius-50{
-                            @include rounded;
-                        }
-            
                         .radius-10{
                             border-radius: 50%;
                         }
@@ -285,4 +281,8 @@
 .filter-select{
     font-weight: 700;
     color: #000 !important;
+}
+
+.radius-50{
+    @include rounded;
 }
