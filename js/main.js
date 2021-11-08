@@ -30,8 +30,27 @@ function filterLatest(arrayOfPost) {
     renderCards(orderLatest)
 }
 
-function filterTop(arrayOfPost) {
-    const orderTop = arrayOfPost.sort((a, b) => {
+function filterDate(dias) {
+    let today = new Date();
+    todayFormat = today.toISOString().split('T')[0]
+    let daysSorted = [todayFormat];
+
+    for (let i = 0; i < dias - 1; i++) {
+        let newDate = new Date(today.setDate(today.getDate() - 1));
+        newDate = newDate.toISOString().split('T')[0]
+        daysSorted = [...daysSorted, newDate];
+    }
+
+    return daysSorted;
+}
+
+function filterTop(arrayOfPost, cantidadDias) {
+
+    const filterDias = arrayOfPost.filter((dias) => {
+        return filterDate(cantidadDias).includes(dias.date)
+    })
+
+    const orderTop = filterDias.sort((a, b) => {
         if (a.reactions.likes < b.reactions.likes) {
             return 1;
         }
@@ -55,21 +74,36 @@ function search(arrayOfPost) {
 function clickLatest(arrayOfPost) {
     const filter = document.querySelector(".latest");
     filter.addEventListener("click", () => {
-        clickFilterCss(filter)
+        topFilter("subtop")
+        clickFilterCss(filter, "items-center")
         filterLatest(arrayOfPost);
     });
 }
 
 function clickTopReaction(arrayOfPost) {
     const filter = document.querySelector(".top");
+    const filterWeek = document.querySelector(`.week`);
     filter.addEventListener("click", () => {
-        clickFilterCss(filter)
-        filterTop(arrayOfPost);
+        topFilter("subtop", "ver")
+        clickFilterCss(filter, "items-center")
+        filterTop(arrayOfPost, 7)
+        clickFilterCss(filterWeek, "subtop")
+        TopReaction(arrayOfPost, 7, "week");
+        TopReaction(arrayOfPost, 30, "month");
+        TopReaction(arrayOfPost, 360, "year");
     });
 }
 
-function clickFilterCss(filter) {
-    const mostrar = document.querySelectorAll(".items-center li a");
+function TopReaction(arrayOfPost, dias, clase) {
+    const filter = document.querySelector(`.${clase}`);
+    filter.addEventListener("click", () => {
+        clickFilterCss(filter, "subtop")
+        filterTop(arrayOfPost, dias);
+    });
+}
+
+function clickFilterCss(filter, clase) {
+    const mostrar = document.querySelectorAll(`.${clase} li a`);
     mostrar.forEach((li) => li.classList.remove("filter-select"))
     filter.classList.add("filter-select",)
 }
@@ -257,7 +291,7 @@ function printCard({ id, content, date, titulo, tags, reactions, img }) {
     bottom_save.classList.add("bottom__save");
 
     const small = document.createElement("small")
-    small.textContent = "4 min read"
+    small.textContent = `${numRandom(3, 20)} min read`
 
     const updateLink = document.createElement("a");
     updateLink.href = `./pages/create-post.html?id=${id}`;
@@ -311,6 +345,12 @@ function printCard({ id, content, date, titulo, tags, reactions, img }) {
     buttonUpdate.append(spanUpdate)
     buttonDelete.append(spanDelete)
 }
+
+function topFilter(clase, nameFilter) {
+    const subfilter = document.querySelector(`.${clase}`);
+    nameFilter === "ver" ? subfilter.classList.remove("hidden") : subfilter.classList.add("hidden");
+}
+
 // document.querySelector(".cards-secondary").addEventListener("mouseover", function (event) {
 //     let card = document.querySelector(".card")
 //     card.classList.add("bordCard");

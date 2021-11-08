@@ -13,6 +13,9 @@
         // outline: 1px solid red;
 
         .filter-cards{
+            display: flex;
+            justify-content: space-between;
+
             .items-center{
                 display: flex;
                 align-items: center;
