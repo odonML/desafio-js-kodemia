@@ -4,6 +4,7 @@
     max-height: 56px;
     background-color: #fff;
     color: #000;
+    z-index: 9;
 
     .nav_header{
         max-width: $site-width;
@@ -30,12 +31,48 @@
                         border-radius:3px;
                     }
                 }
+
+                .busqueda{
+                    .flex{
+                        display: flex;
+                        justify-content: space-around;
+                        align-items: center;
+                        position: relative;
+                        .input {
+                            height: 40px;
+                            width: 410px;
+                            border-radius: 6px;
+                            border: 1px solid #c2c2c2;
+                            font-size: 1rem;
+                            padding: 0;
+                            text-indent:0.5rem;
+
+                            &:focus{
+                                border: 2px solid $color-buttonCreat;
+                                outline: none;
+                            }
+                          }
+                        .icon {
+                            width: 30px;
+                            height: 30px;
+                            position: absolute;
+                            right: 1rem;
+                            z-index: 2;
+        
+                            &:hover {
+                                background-color: #EDEDED;
+                                border-radius: 50px;
+                                padding: 0.25rem;
+                              }
+                          }
+                    }
+                }
             }
     
             .items-center{
                 display: flex;
                 align-items: center;
-                gap: 0.5rem;
+                gap: 1.5rem;
     
                 .button__create{
                     color: white;
@@ -43,7 +80,7 @@
                     padding: 0.75rem 1rem;
                     border-radius: $border;
                     font-weight: 600;
-                    font-size: $f-14;
+                    font-size: $f-16;
                 }
             }
         }

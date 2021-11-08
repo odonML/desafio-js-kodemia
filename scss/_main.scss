@@ -11,23 +11,58 @@
         width: 100%;
         box-sizing: border-box;
         // outline: 1px solid red;
+
+        .filter-cards{
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.25rem;
+
+            .items-center{
+                display: flex;
+                align-items: center;
+                // gap: 0.5rem;
+
+                li{
+                    padding: 0.5rem 0.5rem;
+                    a{
+                        color: $color-filterCard;
+                        padding: 0.5rem 0.5rem;
+
+                        &:hover{
+                            color: #3b49df !important;
+                        }
+                    }
+                    
+                    &:hover{
+                        background-color: rgba(255, 255, 255, 0.5);
+                        border-radius: 5px;
+                        
+                    }
+                }
+
+                
+            }
+        }
     
         .main--body{
             display: flex;
             flex-direction: column;
             gap: 0.5rem;
 
-            .filter-cards{
-                .items-center{
-                    display: flex;
-                    align-items: center;
-                    gap: 0.5rem;
-                    margin-top: 0.25rem;
-
-                    li{
-                        padding: 1rem 0.5rem;
+            .card:first-child{
+                figure:first-child{
+                    display:block;
+                }
+                .card__body{
+                    .body__main{
+                        .body__title{
+                            .cards-secondary{
+                                font-size:1.875rem;
+                            }
+                        }
                     }
                 }
+                
             }
     
             .card{
@@ -35,8 +70,13 @@
                 overflow-x: hidden;
                 border-radius: $border;
                 border: 1px solid rgba(9, 9, 9, 0.2);
-    
+                
+                figure{
+                    display:none;
+                }
+
                 .card__img{
+                    margin: 0;
                     img{
                         width: 100%;
                     }
@@ -63,12 +103,8 @@
                             display: flex
                         }
             
-                        .radius-50{
-                            @include rounded;
-                        }
-            
                         .radius-10{
-                            border-radius: 5px;
+                            border-radius: 50%;
                         }
             
                         .sub-autor{
@@ -146,6 +182,8 @@
                                     a{
                                         color: $color-hoverTitleCard ;
                                     }
+
+                                    
                                 }
                             }
                         }
@@ -254,3 +292,11 @@
     border: 1px solid blue !important;
 }
 
+.filter-select{
+    font-weight: 700;
+    color: #000 !important;
+}
+
+.radius-50{
+    @include rounded;
+}
