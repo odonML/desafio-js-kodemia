@@ -118,10 +118,25 @@ function getPosts() {
         search(arrayOfPost);
         clickLatest(arrayOfPost)
         clickTopReaction(arrayOfPost)
+        let cardDecoration = document.querySelectorAll(".cards-secondary")
+        cardBorder(cardDecoration)
+
     })
     const URL = "https://desafio-js-kodemia-default-rtdb.firebaseio.com/.json";
     xhr.open("GET", URL, true);
     xhr.send();
+}
+
+function cardBorder(cardDecoration) {
+    cardDecoration.forEach((card) => {
+        card.addEventListener("mouseover", function (event) {
+            this.parentNode.parentNode.parentNode.parentNode.classList.add("bordCard")
+        });
+        card.addEventListener("mouseout", function (event) {
+            this.parentNode.parentNode.parentNode.parentNode.classList.remove("bordCard")
+        }
+        );
+    })
 }
 
 getPosts();
@@ -352,12 +367,4 @@ function topFilter(clase, nameFilter) {
     nameFilter === "ver" ? subfilter.classList.remove("hidden") : subfilter.classList.add("hidden");
 }
 
-// document.querySelector(".cards-secondary").addEventListener("mouseover", function (event) {
-//     let card = document.querySelector(".card")
-//     card.classList.add("bordCard");
-// });
 
-// document.querySelector(".cards-secondary").addEventListener("mouseout", function (event) {
-//     let card = document.querySelector(".card")
-//     card.classList.remove("bordCard");
-// });
