@@ -45,7 +45,7 @@ if (urlFull !== "") {
       const response = JSON.parse(xhr.responseText);
       printData(response);
     });
-    const URL = `https://desafio-js-kodemia-default-rtdb.firebaseio.com/${id}/.json`;
+    const URL = `http://localhost:8080/posts/${id}`;
     xhr.open("GET", URL, true);
     xhr.send();
   }
@@ -53,8 +53,9 @@ if (urlFull !== "") {
 
   //Update
   function updatePost(id, data) {
+    
     const xhr = new XMLHttpRequest();
-    const URL = `https://desafio-js-kodemia-default-rtdb.firebaseio.com/${id}/.json`;
+    const URL = `http://localhost:8080/posts/${id}`;
     xhr.addEventListener("readystatechange", () => {
       if (xhr.readyState === 4 && xhr.status === 200) {
         console.log("Actializacion exitosa");
