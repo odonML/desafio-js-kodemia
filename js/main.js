@@ -7,7 +7,7 @@ function cleanMainBody(){
 
 
 function filterPost(arrayOfPost, value) {
-    let postFiltrados = arrayOfPost.filter(post => post.titulo.includes(value));
+    let postFiltrados = arrayOfPost.filter(post => post.title.includes(value));
     cleanMainBody();
     renderCards(postFiltrados);
 }
@@ -115,6 +115,7 @@ function getPosts() {
     const xhr = new XMLHttpRequest();
     xhr.addEventListener("load", () => {
         const response = JSON.parse(xhr.responseText);
+        console.log(response)
         let arrayOfPost = toArray(response);
         renderCards(arrayOfPost);
         search(arrayOfPost);
@@ -123,7 +124,7 @@ function getPosts() {
         let cardDecoration = document.querySelectorAll(".cards-secondary")
         cardBorder(cardDecoration)
     })
-    const URL = "https://desafio-js-kodemia-default-rtdb.firebaseio.com/.json";
+    const URL = "http://localhost:8080/posts/";
     xhr.open("GET", URL, true);
     xhr.send();
 }
@@ -190,7 +191,7 @@ function numRandom(min, max) {
 }
 
 
-function printCard({ id, content, date, titulo, tags, reactions, img }) {
+function printCard({ id, content, date, title, tags, reactions, img }) {
     const mainBody = document.querySelector(".main--body")
     const card = document.createElement("article");
     card.classList.add("card");
@@ -260,7 +261,7 @@ function printCard({ id, content, date, titulo, tags, reactions, img }) {
     cards_secondary.classList.add("cards-secondary");
     const aCards_secondary = document.createElement("a");
     aCards_secondary.href = `./pages/post.html?id=${id}`;
-    aCards_secondary.textContent = titulo;
+    aCards_secondary.textContent = title;
 
     const body_tag = document.createElement("div");
     body_tag.classList.add("body__tag");
