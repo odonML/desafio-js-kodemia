@@ -23,13 +23,13 @@ let urlParams = new URLSearchParams(urlFull);
 if (urlFull !== "") {
   let postId = urlParams.get("id");
 
-  function printData({ titulo, tags, img, content, date }) {
+  function printData({ title, tags, img, content, date }) {
     const inputTitulo = document.querySelector("#titulo");
     const inputUpImage = document.querySelector("#upImage");
     const inputContent = document.querySelector("#content");
     const inputTags = document.querySelector("#tags");
     const inputDate = document.querySelector("#date");
-    inputTitulo.value = titulo;
+    inputTitulo.value = title;
     let stringTags = tags.join().replace(/,/g, " ");
     // console.log(stringTags);
 
@@ -42,10 +42,11 @@ if (urlFull !== "") {
   function getPostById(id) {
     const xhr = new XMLHttpRequest();
     xhr.addEventListener("load", () => {
+      console.log(id)
       const response = JSON.parse(xhr.responseText);
       printData(response);
     });
-    const URL = `https://desafio-js-kodemia-default-rtdb.firebaseio.com/${id}/.json`;
+    const URL = `http://localhost:8080/posts/${id}`;
     xhr.open("GET", URL, true);
     xhr.send();
   }
@@ -54,7 +55,8 @@ if (urlFull !== "") {
   //Update
   function updatePost(id, data) {
     const xhr = new XMLHttpRequest();
-    const URL = `https://desafio-js-kodemia-default-rtdb.firebaseio.com/${id}/.json`;
+    const URL = `http://localhost:8080/posts/${id}`;
+
     xhr.addEventListener("readystatechange", () => {
       if (xhr.readyState === 4 && xhr.status === 200) {
         console.log("Actializacion exitosa");
@@ -64,6 +66,7 @@ if (urlFull !== "") {
       }
     });
     xhr.open("PUT", URL, true);
+    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xhr.send(JSON.stringify(data));
   }
 
@@ -73,7 +76,7 @@ if (urlFull !== "") {
     const inputContent = document.querySelector("#content");
     const inputTags = document.querySelector("#tags");
     const inputDate = document.querySelector("#date");
-    let titulo = inputTitulo.value;
+    let title = inputTitulo.value;
     let tags = inputTags.value;
     let upImage = inputUpImage.value;
     let content = inputContent.value;
@@ -89,11 +92,11 @@ if (urlFull !== "") {
       getTime.getMinutes() +
       ":" +
       getTime.getSeconds();
-    if (titulo !== "" && inputTags.dataset.valid === "true" && content !== "") {
+    if (title !== "" && inputTags.dataset.valid === "true" && content !== "") {
       aviso.style.display = "none";
       let arrayTags = tags.split(" ");
       let objeto = {
-        titulo,
+        title,
         tags: arrayTags,
         content,
         img: upImage,
@@ -131,8 +134,10 @@ if (urlFull !== "") {
   //post
   function post(obj) {
     const xhr = new XMLHttpRequest();
-    const URL = "https://desafio-js-kodemia-default-rtdb.firebaseio.com/.json";
+    const URL = "http://localhost:8080/posts/";//URL del post backedn
+
     xhr.open("POST", URL, true);
+    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xhr.onreadystatechange = function () {
       if (xhr.readyState === 4 && xhr.status === 200) {
         console.log("Post Creado con exito");
@@ -149,12 +154,13 @@ if (urlFull !== "") {
     const inputContent = document.querySelector("#content");
     const inputTags = document.querySelector("#tags");
     const inputDate = document.querySelector("#date");
-    let titulo = inputTitulo.value;
+    let title = inputTitulo.value;
     let tags = inputTags.value;
     let upImage = inputUpImage.value;
     let content = inputContent.value;
     let fecha = inputDate.value;
 
+    let random = Math.floor((Math.random() * (100 - 1 + 1)) + 1);
     // console.log(fecha);
 
     let aviso = document.querySelector(".aviso-post");
@@ -165,18 +171,18 @@ if (urlFull !== "") {
       getTime.getMinutes() +
       ":" +
       getTime.getSeconds();
-    if (titulo !== "" && inputTags.dataset.valid === "true" && content !== "") {
+    if (title !== "" && inputTags.dataset.valid === "true" && content !== "") {
       aviso.style.display = "none";
       let arrayTags = tags.split(" ");
       let objeto = {
-        titulo,
+        title,
         tags: arrayTags,
         content,
         img: upImage,
         date: fecha,
         hour: hora,
         reactions: {
-          likes: 0,
+          likes: random,
           unicorn: 0,
           save: 0,
         },
