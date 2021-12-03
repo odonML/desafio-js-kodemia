@@ -191,7 +191,7 @@ function numRandom(min, max) {
 }
 
 
-function printCard({ id, content, date, title, tags, reactions, img }) {
+function printCard({ _id, content, date, title, tags, reactions, img }) {
     const mainBody = document.querySelector(".main--body")
     const card = document.createElement("article");
     card.classList.add("card");
@@ -260,7 +260,7 @@ function printCard({ id, content, date, title, tags, reactions, img }) {
     const cards_secondary = document.createElement("h2");
     cards_secondary.classList.add("cards-secondary");
     const aCards_secondary = document.createElement("a");
-    aCards_secondary.href = `./pages/post.html?id=${id}`;
+    aCards_secondary.href = `./pages/post.html?id=${_id}`;
     aCards_secondary.textContent = title;
 
     const body_tag = document.createElement("div");
@@ -314,11 +314,11 @@ function printCard({ id, content, date, title, tags, reactions, img }) {
     small.textContent = `${numRandom(3, 20)} min read`
 
     const updateLink = document.createElement("a");
-    updateLink.href = `./pages/create-post.html?id=${id}`;
+    updateLink.href = `./pages/create-post.html?id=${_id}`;
     const buttonUpdate = document.createElement("button")
     buttonUpdate.classList.add("button__save--update", "btn__update");
     buttonUpdate.setAttribute("type", "button")
-    buttonUpdate.dataset.id = id;
+    buttonUpdate.dataset.id = _id;
 
     const spanUpdate = document.createElement("span")
     spanUpdate.textContent = "Actualizar"
@@ -326,7 +326,7 @@ function printCard({ id, content, date, title, tags, reactions, img }) {
     const buttonDelete = document.createElement("button")
     buttonDelete.classList.add("button__save--delete", "btn__delete");
     buttonDelete.setAttribute("type", "button")
-    buttonDelete.dataset.id = id;
+    buttonDelete.dataset.id = _id;
     buttonDelete.addEventListener("click", removePost);
 
     const spanDelete = document.createElement("span")

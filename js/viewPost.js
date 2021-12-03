@@ -42,10 +42,11 @@ if (urlFull !== "") {
   function getPostById(id) {
     const xhr = new XMLHttpRequest();
     xhr.addEventListener("load", () => {
+      console.log(id)
       const response = JSON.parse(xhr.responseText);
       printData(response);
     });
-    const URL = `https://desafio-js-kodemia-default-rtdb.firebaseio.com/${id}/.json`;
+    const URL = `http://localhost:8080/posts/${id}`;
     xhr.open("GET", URL, true);
     xhr.send();
   }
