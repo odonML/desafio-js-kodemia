@@ -143,7 +143,7 @@ ul {
 }
 
 .container_main {
-  padding-top: 56px;
+  padding-top: 65px;
 }
 
 .container_main .main {
@@ -1491,5 +1491,12 @@ body {
 .avatar-profile {
   position: relative;
   top: -18px;
+}
+.card-img-top {
+  height: 306px;
+}
+
+.tag {
+  margin: 5px;
 }
 /*# sourceMappingURL=styles.css.map */
