@@ -131,7 +131,7 @@ if (urlFull !== "") {
   //post
   function post(obj) {
     const xhr = new XMLHttpRequest();
-    const URL = "http://localhost:8080/posts/";
+    const URL = "http://localhost:8080/posts/";//URL del post backedn
 
     xhr.open("POST", URL, true);
     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
