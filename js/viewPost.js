@@ -23,13 +23,13 @@ let urlParams = new URLSearchParams(urlFull);
 if (urlFull !== "") {
   let postId = urlParams.get("id");
 
-  function printData({ titulo, tags, img, content, date }) {
+  function printData({ title, tags, img, content, date }) {
     const inputTitulo = document.querySelector("#titulo");
     const inputUpImage = document.querySelector("#upImage");
     const inputContent = document.querySelector("#content");
     const inputTags = document.querySelector("#tags");
     const inputDate = document.querySelector("#date");
-    inputTitulo.value = titulo;
+    inputTitulo.value = title;
     let stringTags = tags.join().replace(/,/g, " ");
     // console.log(stringTags);
 
