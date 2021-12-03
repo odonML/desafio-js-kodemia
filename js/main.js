@@ -197,9 +197,21 @@ function numRandom(min, max) {
 
 
 function printCard({ _id, content, date, title, tags, reactions, img }) {
+
+    const mainBody = document.querySelector(".main--body")
+    const card = document.createElement("article");
+    card.classList.add("card");
+
+    const card_img = document.createElement("figure");
+    card_img.classList.add("card__img");
+
+    const imgFirstCard = document.createElement("img");
+    imgFirstCard.src = img
+
   const mainBody = document.querySelector(".main--body")
   const card = document.createElement("article");
   card.classList.add("card");
+
 
   const card_img = document.createElement("figure");
   card_img.classList.add("card__img");
@@ -238,6 +250,130 @@ function printCard({ _id, content, date, title, tags, reactions, img }) {
   inSombra.textContent = "Jairo Rocano";
 
   const spanLibre = document.createElement("span");
+
+    const sombra = document.createElement("div");
+    sombra.classList.add("sombra");
+
+    const aTime = document.createElement("a");
+    const time = document.createElement("time");
+    time.classList.add("time");
+    time.textContent = `${moment(date).format("MMM D")}`;
+    // time.textContent = "Nov 2 (15 hours ago)";
+
+    //Cuerpo del Card
+    const body_main = document.createElement("div");
+    body_main.classList.add("body__main");
+
+    /* body_title */
+    const body_title = document.createElement("div");
+    body_title.classList.add("body__title");
+    const cards_secondary = document.createElement("h2");
+    cards_secondary.classList.add("cards-secondary");
+    const aCards_secondary = document.createElement("a");
+    aCards_secondary.href = `./pages/post.html?id=${_id}`;
+    aCards_secondary.textContent = title;
+
+    const body_tag = document.createElement("div");
+    body_tag.classList.add("body__tag");
+
+    /* body_tag */
+    tags.map((tags) => {
+        const decorate_ancor = document.createElement("a")
+        //decorate_ancor.classList.add("decorate-ancor");
+        const body_tag_prefix = document.createElement("span")
+        body_tag_prefix.classList.add("body__tag--prefix")
+        body_tag_prefix.textContent = "#"
+        const textTag = document.createElement("text")
+        textTag.textContent = `${tags}`
+        body_tag.append(decorate_ancor)
+        decorate_ancor.append(body_tag_prefix, textTag)
+    })
+
+    //arrayTags
+    /* body_bottom */
+    const body_bottom = document.createElement("div");
+    body_bottom.classList.add("body__bottom");
+
+    const bottom_details = document.createElement("div");
+    bottom_details.classList.add("bottom__details");
+
+    const align_items = document.createElement("a")
+    align_items.classList.add("align__items")
+
+    const align_items_padding = document.createElement("div")
+    align_items_padding.classList.add("align__items--padding")
+
+    const svgReaction = document.createElement("svg")
+    svgReaction.setAttribute("xmlns", "http://www.w3.org/2000/svg")
+    svgReaction.setAttribute("width", "24")
+    svgReaction.setAttribute("height", "24")
+
+    const path = document.createElement("img")
+    path.src = "./img/svg/corazon.svg" //--------------------ODON: me da error esta linea no se porque...
+
+    const textReaction = document.createElement("text")
+    textReaction.textContent = `${reactions.likes}`
+
+    const spanReaction = document.createElement("span")
+    spanReaction.textContent = "Reactions"
+
+    const bottom_save = document.createElement("div");
+    bottom_save.classList.add("bottom__save");
+
+    const small = document.createElement("small")
+    small.textContent = `${numRandom(3, 20)} min read`
+
+    const updateLink = document.createElement("a");
+    updateLink.href = `./pages/create-post.html?id=${_id}`;
+    const buttonUpdate = document.createElement("button")
+    buttonUpdate.classList.add("button__save--update", "btn__update");
+    buttonUpdate.setAttribute("type", "button")
+    buttonUpdate.dataset.id = _id;
+
+    const spanUpdate = document.createElement("span")
+    spanUpdate.textContent = "Actualizar"
+
+    const buttonDelete = document.createElement("button")
+    buttonDelete.classList.add("button__save--delete", "btn__delete");
+    buttonDelete.setAttribute("type", "button")
+    buttonDelete.dataset.id = _id;
+    buttonDelete.addEventListener("click", removePost);
+
+    const spanDelete = document.createElement("span")
+    spanDelete.textContent = "Eliminar"
+
+    //append
+    mainBody.appendChild(card)
+    card.append(card_img, card_body)
+    card_img.append(imgFirstCard)
+    card_body.append(body_top, body_main)
+    body_top.append(ps_relative, autor)
+    ps_relative.appendChild(aImageAutor)
+    aImageAutor.append(img_autor)
+    // aImageAutor.append(img_autor, aImageCoautor)
+    // aImageCoautor.appendChild(img_subAutor)
+    autor.append(autor_name, aTime)
+    autor_name.append(inSombra, spanLibre)
+    inSombra.appendChild(sombra)
+    spanLibre.append(forSpan, nameCoautor)
+    aTime.appendChild(time)
+
+    body_main.append(body_title, body_tag, body_bottom)
+    body_title.appendChild(cards_secondary)
+    cards_secondary.appendChild(aCards_secondary)
+
+    body_bottom.append(bottom_details, bottom_save)
+    bottom_details.append(align_items, align_items)
+    align_items.append(align_items_padding)
+    align_items_padding.append(svgReaction, textReaction, spanReaction)
+
+    svgReaction.appendChild(path)
+
+    updateLink.append(buttonUpdate);
+
+    bottom_save.append(small, updateLink, buttonDelete)
+    buttonUpdate.append(spanUpdate)
+    buttonDelete.append(spanDelete)
 
   const forSpan = document.createElement("span");
   forSpan.classList.add("for");
