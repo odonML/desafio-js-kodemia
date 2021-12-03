@@ -117,10 +117,12 @@ function getPosts() {
     const response = JSON.parse(xhr.responseText);
     console.log(response)
     let arrayOfPost = toArray(response);
-    arrayOfPost.map((data) => {
-      let todayFormat = data.date.split('T')[0]
-      data.formatDate = todayFormat;
-    })
+
+    //--JAIRO esto es lo que da error, descomentalo y pruebalo en actualizar pero haz otra rama no lo hagas en develop
+    // arrayOfPost.map((data) => {
+    //   let todayFormat = data.date.split('T')[0]
+    //   data.formatDate = todayFormat;
+    // })
     console.log(arrayOfPost);
     renderCards(arrayOfPost);
     search(arrayOfPost);
