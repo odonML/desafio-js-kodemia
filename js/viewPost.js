@@ -46,7 +46,7 @@ if (urlFull !== "") {
       const response = JSON.parse(xhr.responseText);
       printData(response);
     });
-    const URL = `http://localhost:8080/posts/${id}`;
+    const URL = `https://desafio-kodemia-backend.herokuapp.com/posts/${id}`;
     xhr.open("GET", URL, true);
     xhr.send();
   }
@@ -55,7 +55,7 @@ if (urlFull !== "") {
   //Update
   function updatePost(id, data) {
     const xhr = new XMLHttpRequest();
-    const URL = `http://localhost:8080/posts/${id}`;
+    const URL = `https://desafio-kodemia-backend.herokuapp.com/posts/${id}`;
 
     xhr.addEventListener("readystatechange", () => {
       if (xhr.readyState === 4 && xhr.status === 200) {
@@ -134,7 +134,7 @@ if (urlFull !== "") {
   //post
   function post(obj) {
     const xhr = new XMLHttpRequest();
-    const URL = "http://localhost:8080/posts/";//URL del post backedn
+    const URL = "https://desafio-kodemia-backend.herokuapp.com/posts";//URL del post backedn
 
     xhr.open("POST", URL, true);
     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");

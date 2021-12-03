@@ -131,7 +131,7 @@ function getPosts() {
     let cardDecoration = document.querySelectorAll(".cards-secondary")
     cardBorder(cardDecoration)
   })
-  const URL = "http://localhost:8080/posts/";
+  const URL = "https://desafio-kodemia-backend.herokuapp.com/posts";
   xhr.open("GET", URL, true);
   xhr.send();
 }
@@ -183,7 +183,7 @@ function deletePost(postId) {
     cleanMainBody();
     getPosts();
   });
-  const URL = `http://localhost:8080/posts/${postId}`;
+  const URL = `https://desafio-kodemia-backend.herokuapp.com/posts/${postId}`;
   xhr.open("DELETE", URL, true);
   xhr.send();
 };
