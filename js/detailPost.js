@@ -9,7 +9,7 @@ function getPostById(id) {
       console.log(response)
       printData(response);
     });
-    const URL = `https://desafio-kodemia-backend.herokuapp.com/posts/${id}`;
+    const URL = `https://desafio-kodemia-backend.herokuapp.com/posts/${id}`; //URL del backend en Heroku
     xhr.open("GET", URL, true);
     xhr.send();
   }
